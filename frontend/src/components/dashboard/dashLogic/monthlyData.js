@@ -32,5 +32,4 @@ if(item.type === "Received" && itemMonth === selectedMonth){
   }));
 
 
-
 }

@@ -7,7 +7,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-import { getMonthlyData } from './dashLogic/MonthlyData';
+import { getMonthlyData } from './dashLogic/monthlyData';
 
 const COLORS = [
   "#FF6B6B",
