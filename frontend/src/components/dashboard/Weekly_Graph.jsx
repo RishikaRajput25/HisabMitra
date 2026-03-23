@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from "react";
+import  { useState } from "react";
 import {
   BarChart,
   Bar,
