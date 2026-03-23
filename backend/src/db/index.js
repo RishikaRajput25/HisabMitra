@@ -2,17 +2,13 @@
 import { DB_Name } from "../constants.js";
 import mongoose from "mongoose";
 import dns from "dns";
-dns.setDefaultResultOrder("ipv4first");
-
-// const mongoURI =
-//   process.env.NODE_ENV === "production"
-//     ? process.env.MONGO_ATLAS_URI
-//     : process.env.MONGO_LOCAL_URI;
+dns.setServers(["1.1.1.1","8.8.8.8"]);
 
 
 const connectDB=async()=>{
-    // console.log(`${process.env.MONGO_URI}/${DB_Name}`)
+    
     try{
+        
 const connectionInstance=await mongoose.connect(`${process.env.MONGO_URI}/${DB_Name}`);
 
 console.log(`\n MongoDB connected !! DB HOST : ${connectionInstance.connection.host}`)  }

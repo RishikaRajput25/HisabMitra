@@ -25,7 +25,7 @@ console.error("createCluster Error :", err);
 throw new ApiError(500, "Server Error!");
 }
 });
-
+//getClusters
 export const getClusters= asyncHandler(async(req,res)=>{
   try{
     const userId = req.user &&(req.user.id || req.user._id);

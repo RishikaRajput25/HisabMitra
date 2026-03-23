@@ -5,8 +5,11 @@ import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 const app=express();
 dotenv.config({
-path: './env'
+path: './.env'
 })
+
+// dotenv.config();
+
 app.use(cors({
     origin:process.env.CORS_ORIGIN,
     credentials: true
