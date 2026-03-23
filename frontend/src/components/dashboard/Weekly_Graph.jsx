@@ -1,58 +1,3 @@
-// import React from "react";
-// import {
-//   BarChart,
-//   Bar,
-//   XAxis,
-//   YAxis,
-//   Tooltip,
-//   ResponsiveContainer,
-//   CartesianGrid,
-// } from "recharts";
-
-// const Weekly_Graph = ({ expenses }) => {
-//   // Week days in correct order
-//   const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-
-//   // Initialize array with 0 values for all 7 days
-//   const weeklyData = days.map((day) => ({
-//     day,
-//     amount: 0,
-//   }));
-
-//   // MAIN LOGIC → Calculate expense of each week day
-//   expenses.forEach((item) => {
-//     const date = new Date(item.date); // Convert to JS Date
-//     const dayIndex = date.getDay();   // Sun=0 ... Sat=6
-
-//     weeklyData[dayIndex].amount += Number(item.amount); // Add amount to correct day
-//   });
-
-//   return (
-//     <div className="w-full bg-white p-4 rounded-xl shadow-md mt-3">
-//       <h2 className="text-center font-semibold text-lg mb-2">
-//         Weekly Expense Overview
-//       </h2>
-
-//       <div className="w-full h-[300px]">
-//         <ResponsiveContainer width="100%" height="100%">
-//           <BarChart data={weeklyData}>
-//             <CartesianGrid strokeDasharray="3 3" />
-//             <XAxis dataKey="day" />
-//             <YAxis />
-//             <Tooltip />
-//             <Bar
-//               dataKey="amount"
-//               fill="#4F46E5"
-//               radius={[6, 6, 0, 0]} // Rounded top bars
-//             />
-//           </BarChart>
-//         </ResponsiveContainer>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Weekly_Graph;
 
 import React, { useState, useEffect } from "react";
 import {
@@ -68,45 +13,44 @@ import {
 const Weekly_Graph = ({ expenses }) => {
   const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-  // ---------------------------
+  
   // TRACK WHICH WEEK USER IS VIEWING
   // currentWeekOffset = 0 → THIS WEEK
-  // -1 → PREVIOUS WEEK
-  // +1 → NEXT WEEK
-  // ---------------------------
+  // -1 = PREVIOUS WEEK
+  // +1 = NEXT WEEK
+
   const [weekOffset, setWeekOffset] = useState(0);
    
-  // Function → get start (Sun) & end (Sat) of selected week
-  const getWeekRange = (offset) => {
-    const curr = new Date();
+  // Function - get start (Sun) & end (Sat) of selected week
 
-    // Move weeks → offset * 7 days
-    curr.setDate(curr.getDate() + offset * 7);
+const getWeekRange = (offset) => {
+  const curr = new Date();
+  curr.setDate(curr.getDate() + offset * 7);
 
-    // Find Sunday
-    const first = new Date(curr);
-    first.setDate(first.getDate() - first.getDay());
+  const first = new Date(curr);
+  first.setDate(first.getDate() - first.getDay());
+  first.setHours(0,0,0,0);   //  start of day
 
-    // Find Saturday
-    const last = new Date(first);
-    last.setDate(last.getDate() + 6);
+  const last = new Date(first);
+  last.setDate(last.getDate() + 6);
+  last.setHours(23,59,59,999);  //  end of day
 
-    return { start: first, end: last };
-  };
+  return { start: first, end: last };
+};
 
   const { start, end } = getWeekRange(weekOffset);
 
-  // ---------------------------
+
   // FILTER EXPENSES FOR THIS WEEK ONLY
-  // ---------------------------
+  
   const filtered = expenses.filter((item) => {
     const d = new Date(item.date);
     return d >= start && d <= end;
   });
 
-  // ---------------------------
+  
   // CALCULATE WEEKLY AMOUNTS
-  // ---------------------------
+ 
   const weeklyData = days.map((day) => ({ day, amount: 0 }));
 
   filtered.forEach((item) => {
@@ -132,7 +76,7 @@ const totalWeeklyReceived = filtered
           onClick={() => setWeekOffset(weekOffset - 1)}
           className="px-3 py-1 bg-gray-200 rounded-md hover:bg-gray-300"
         >
-          ← Previous Week
+         <i class="fa-solid fa-arrow-left"></i> Previous Week
         </button>
 
         <h2 className="font-semibold text-lg">
@@ -143,7 +87,7 @@ const totalWeeklyReceived = filtered
           onClick={() => setWeekOffset(weekOffset + 1)}
           className="px-3 py-1 bg-gray-200 rounded-md hover:bg-gray-300"
         >
-          Next Week →
+          Next Week <i class="fa-solid fa-arrow-right"></i>
         </button>
       </div>
 
@@ -172,10 +116,7 @@ const totalWeeklyReceived = filtered
             />
           </BarChart>
         </ResponsiveContainer>
-        {/* <div className="mt-1 flex justify-between">
-        <h className="mt-1 font-light ">Total Weekly Expense : {TotalWeeklyExpense}</h>
-        <h className="mt-1 font-light ">Total Weekly Income : {totalWeeklyReceived}</h>
-        </div> */}
+        
         
       </div>
       <div className="mt-4">

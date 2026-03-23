@@ -232,46 +232,6 @@ const checkAuth= asyncHandler(async(req,res)=>{
     user:req.user,
   });
 });
-// const logoutUser= asyncHandler(async(req, res)=>{
-
-//   const userId= req.user._id;
-//   await User.findByIdAndUpdate(userId,
-//      { $set: { refreshToken: null } },
-//       { new: true }
-//   )
-
-//   // browser se cookies clear
-//     const options = {
-//       httpOnly: true,
-//       secure: false, // localhost ke liye false, production me true
-//       sameSite: "strict",
-//     };
-//      return res
-//       .status(200)
-//       .clearCookie("accessToken", options)
-//       .clearCookie("refreshToken", options)
-//       .json(
-//         new ApiError({
-//         success: true,
-//         message: "Logged out successfully",
-//       })
-//       );
-// })
-
-// const logoutUser = asyncHandler(async (req, res) => {
-//   res
-//     .clearCookie("token", {
-//       httpOnly: true,
-//       secure: true,
-//       sameSite: "none",
-//     })
-//     .status(200)
-//     .json({
-//       success: true,
-//       message: "Logged out successfully"
-//     });
-// });
-
 
 const logoutUser = asyncHandler(async(req,res)=>{
   await User.findByIdAndUpdate(
@@ -294,4 +254,36 @@ const logoutUser = asyncHandler(async(req,res)=>{
       message: "Logged out successfully",
     });
 })
-export { registerUser, loginUser,checkAuth,logoutUser};
+const editUsername = asyncHandler(async (req, res) => {
+
+  const user = req.user;
+
+  if (!user) {
+    throw new ApiError(401, "Unauthorized user");
+  }
+
+  const { username } = req.body;
+
+  if (!username) {
+    throw new ApiError(400, "Username is required");
+  }
+
+  // check username already exists
+  const existingUser = await User.findOne({ username });
+
+  if (existingUser) {
+    throw new ApiError(400, "Username already taken");
+  }
+
+  const updatedUser = await User.findByIdAndUpdate(
+    user._id,
+    { username },
+    { new: true }
+  ).select("-password");
+
+  return res.status(200).json(
+    new ApiResponce(200, updatedUser, "Username updated successfully")
+  );
+
+});
+export { registerUser, loginUser,checkAuth,logoutUser,editUsername};

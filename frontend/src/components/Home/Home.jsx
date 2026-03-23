@@ -1,9 +1,24 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useAuth } from "../context/AuthContext.jsx";
+import { useNavigate } from 'react-router-dom';
 const Home = () => {
+  const user= useAuth();
+ const navigate= useNavigate();
+  const handleNavigate = ()=>{
+   
+    if(user){
+      navigate('/dashboard');
+    }else{
+      navigate('/signup');
+    }
+    // navigate('/signup');
+     window.reload(); 
+  }
+
   return (
     <div className='min-h-screen font-sans'>
-     {/* <h1>Smart Personal Finance “Leak Detector </h1> */}
+    
       {/* Hero Section */}
       <section className="flex flex-col md:flex-row items-center justify-between px-10 py-16 md:px-20">
         <div className="md:w-1/2 space-y-5">
@@ -13,12 +28,13 @@ const Home = () => {
           </h2>
           <p className="text-gray-700">
             Manage your daily expenses, track your savings, and grow your wealth smartly
-            with <span className="font-semibold text-gray-900">HisabMitra</span> — your
+            with <span className="font-semibold text-gray-900">HisabMitra</span> <i class="fa-solid fa-minus"></i> your
             personal expense tracker.
           </p>
           <div className="flex space-x-4 mt-5">
-            <button className="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition">
-             <Link to="/signup">Get Started</Link>
+            <button onClick={()=>handleNavigate()} className="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition">
+            
+             Get Started
             </button>
            
           </div>

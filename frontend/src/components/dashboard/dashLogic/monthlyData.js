@@ -1,26 +1,6 @@
 import { Tooltip } from "recharts";
 
  export const getMonthlyData=(expenses,selectedMonth)=>{
-// const month= Array(12).fill(0);
-
-// expenses.forEach((item) => {
-//    const date = new Date(item.date);
-//     const monthIndex= date.getMonth();
-
-//     if(item.type == "expense"){
-//         month[monthIndex] += item.amount;
-//     }
-// });
-// const monthNames=[
-//     "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-//     "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-// ];
-
-
-// return monthNames.map((name, i)=>({
-//     month:name,
-//     total:month[i]
-// }));
 
  const categoryTotals = {};
  let TotalExpense=0;

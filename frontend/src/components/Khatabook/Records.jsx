@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { fetchRecordsByCLuster } from "../api/api";
 import { api } from "../api/api";
 import toast from "react-hot-toast";
+import { Trash } from "lucide-react";
 const Records = () => {
   const { clusterId } = useParams();
   const navigate = useNavigate();
@@ -49,6 +50,10 @@ const Records = () => {
   
 const handleDelete = async () => {
   try {
+     const confirmDelete= window.confirm("do you really want to delete KhataBook ?")
+     if(!confirmDelete){
+      return;
+     }
     await api.delete(`clusters/${clusterId}`);
     navigate('/profile');
     toast.success("Cluster Successfully deleted");
@@ -73,7 +78,7 @@ console.log("Record Deleted");
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
       <div className="bg-white w-full max-w-3xl rounded-xl shadow-lg p-6 relative">
 
-        {/* 🔙 Back */}
+        {/*  Back */}
         <button
           onClick={() => navigate("/profile")}
           className="absolute top-4 left-4 text-gray-600 hover:text-black"
@@ -81,15 +86,18 @@ console.log("Record Deleted");
         <i class="fa-solid fa-arrow-left"></i> back
         </button>
 
-        {/* 📌 Header */}
+        {/*  Header */}
        
         <div className=" text-center mb-6">
           <div className=" flex justify-center gap-5 mb-1.5">
           <h2 className="text-xl font-semibold text-gray-800">
             Cluster Records
           </h2>
-          <button className='h-8 w-8 bg-blue-500 rounded text-2xl text-white' onClick={()=>{navigate(`/clusters/${clusterId}/records/create`)}}>+</button>
-          <button className='h-8 w-8 bg-red-700 rounded text-2xl text-white'><i class="fa-solid fa-trash" onClick={handleDelete}></i></button>
+          <button className='h-8 w-8 bg-blue-500 rounded text-2xl text-white flex justify-center pb-2' onClick={()=>{navigate(`/clusters/${clusterId}/records/create`)}}>+</button>
+          <button className='h-8 w-8 text-white rounded text-2xl bg-red-700'>
+            <i class="fa-solid fa-trash"  onClick={handleDelete}></i>
+            {/* <Trash/> */}
+            </button>
           </div>
           
           <p className="text-sm text-gray-500">
@@ -100,7 +108,7 @@ console.log("Record Deleted");
         
         
 
-        {/* ❌ Error */}
+        {/*  Error */}
         {error && (
           <p className="text-center text-red-500 mb-4">{error}</p>
         )}
@@ -143,7 +151,7 @@ console.log("Record Deleted");
                   ₹{record.amount}
                 </div>
                 <div>
-                  <button className="h-8 w-8 bg-black text-white  border rounded">
+                  <button className="h-8 w-8  text-red-700   rounded">
                     <i class="fa-solid fa-trash" onClick={()=>handleDeleteRecord(record._id)}></i>
                     </button>
                 </div>

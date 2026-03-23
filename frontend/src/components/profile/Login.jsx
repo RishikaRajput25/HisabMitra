@@ -20,7 +20,7 @@ const Login= () => {
           console.log("Form submitted:", data);
      navigate('/'); // optional redirect
       } catch(err){
-        toast.success("User not exists")
+        toast.error("User not exists")
       }
 
   };
@@ -63,10 +63,7 @@ const Login= () => {
         >
           Login
         </button>
-        {/* <div className='flex justify-between text-gray-600'>
-           <a className='left-0'>Forget Password?</a>
-           <a className=' right-0'><Link to="/signup">Sign Up</Link>  </a>
-        </div> */}
+       
         <div className="flex justify-between text-gray-600 text-sm mt-3">
   <a href="#" className="hover:underline">
     Forgot Password?
@@ -75,13 +72,7 @@ const Login= () => {
     Sign Up
   </Link>
   </div>
-<p className="text-center text-gray-500 mt-2">
-  or you can sign in with
-</p>
-<div className='flex justify-center text-gray-600 text-2xl space-x-4 mt-2'>
-    <i class="fa-brands fa-google"></i><i class="fa-brands fa-facebook"></i>
-<i class="fa-brands fa-github"></i>
-</div>
+
   </form>
     </div>
     </>

@@ -1,56 +1,7 @@
-// import React from "react";
-
-// const ListingTable = ({ expenses }) => {
-//   // safeguard
-//   if (!Array.isArray(expenses)) {
-//     console.log("Expenses is not an array:", expenses);
-//     return <p>No expenses available.</p>;
-//   }
-
-//   return (
-//     <div className="bg-white p-4 rounded-xl shadow">
-//       <table className="w-full text-left">
-//         <thead>
-//           <tr className="border-b">
-//             <th className="p-2">Title</th>
-//             <th className="p-2">Category</th>
-//             <th className="p-2">Amount</th>
-//             <th className="p-2">Date</th>
-//           </tr>
-//         </thead>
-
-//         <tbody>
-//           {expenses.length > 0 ? (
-//             expenses.map((item) => (
-//               <tr key={item._id || item.id} className="border-b hover:bg-gray-50">
-//                 <td className="p-2">{item.title}</td>
-//                 <td className="p-2">{item.category}</td>
-//                 <td className="p-2 font-semibold">₹{item.amount}</td>
-//                 <td className="p-2">
-//                   {item.date
-//                     ? new Date(item.date).toLocaleDateString()
-//                     : "—"}
-//                 </td>
-//               </tr>
-//             ))
-//           ) : (
-//             <tr>
-//               <td colSpan="4" className="p-4 text-center text-gray-500">
-//                 No records found.
-//               </td>
-//             </tr>
-//           )}
-//         </tbody>
-//       </table>
-//     </div>
-//   );
-// };
-
-// export default ListingTable;
 
 import React from "react";
-import { api,fetchExpenses } from "../api/api";
-import { useEffect } from "react";
+import { api } from "../api/api";
+
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 const ListingCards = ({ expenses ,fetchExpenses,setExpenses}) => {
@@ -83,15 +34,7 @@ const handleDelete = async (_id) => {
   }
 };
 
-// const handleUpdate = async(_id)=>{
-//   try{
-//  navigate(`/editExpense/${_id}`);
 
-//   }
-//   catch(err){
-//  console.log("Error :",err);
-//   }
-// }
   return (
     <div className="space-y-2   grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-3 mt-4 ">
       {expenses.map((item) => (
@@ -122,7 +65,7 @@ const handleDelete = async (_id) => {
                 item.type === "income" ? "text-green-600" : "text-red-600"
               }`}
             >
-              ₹{item.amount.toLocaleString()}
+              <i class="fa-solid fa-indian-rupee-sign"></i>{item.amount.toLocaleString()}
             </p>
 
             <p className="text-gray-500 text-xs">

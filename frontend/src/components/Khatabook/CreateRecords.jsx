@@ -93,7 +93,7 @@ navigate('/profile');
             onClick={() => navigate("/dashboard")}
             className="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-700 font-medium py-2 rounded-lg shadow transition"
           >
-            ⬅ Back
+             Back
           </button>
 
           {/* Submit Button */}

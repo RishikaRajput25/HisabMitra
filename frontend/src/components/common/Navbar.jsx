@@ -58,8 +58,7 @@ const handleLogout=async()=>{
 <Link to="/dashboard" className='hover:text-gray-100'>Dashboard</Link>
 <div className={` md:flex gap-6 ${showProfile ? "lg:w-1/2" : "w-full"} `}>
     {user ? (
-       <>
-       
+       <>   
 <button className={`hover:text-gray-100`  } onClick={handleLogout}>Logout</button>
 <Link to="/profile"  onClick={() => setShowProfile(true)} className='hover:text-gray-100 hidden sm:block  '> <i className="fa-solid text-2xl fa-circle-user"></i></Link>
 </>
@@ -95,7 +94,7 @@ const handleLogout=async()=>{
       {user ? (
         <>
         <Link to="/profile">Profile</Link>
-        <Link to="/logout" className="hover:text-gray-100">Logout</Link>
+        <Link  onClick={handleLogout} className="hover:text-gray-100">Logout</Link>
         </>):(
           <>
       <Link to="/signup" onClick={() => setIsOpen(false)}>SignUp</Link>
@@ -110,70 +109,3 @@ const handleLogout=async()=>{
 
 export default Navbar
 
-
-
-// import React, { useEffect, useState } from "react";
-// import { Link, useNavigate } from "react-router-dom";
-// import { checkLoginStatus } from "../api/api";
-
-// const Navbar = () => {
-//   const [userPresence, setUserPresence] = useState(false);
-//   const navigate = useNavigate();
-
-//   // Run only once on initial load
-//   useEffect(() => {
-//     const checkStatus = async () => {
-//       const result = await checkLoginStatus();
-
-//       if (result && result.success) {
-//         setUserPresence(true);
-//       } else {
-//         setUserPresence(false);
-//       }
-//     };
-
-//     checkStatus();
-//   }, []); // <-- empty array means NO infinite loop
-
-//   const handleLogout = async () => {
-//     try {
-//       await api.post("/users/logout"); // backend should clear the cookie
-//       setUserPresence(false);
-//       navigate("/login");
-//     } catch (error) {
-//       console.log("Logout failed", error);
-//     }
-//   };
-
-//   return (
-//     <nav className="w-full flex justify-between items-center p-4 border-b">
-//       <Link className="text-xl font-bold" to="/">MyApp</Link>
-
-//       <div className="flex gap-4">
-
-//         {userPresence ? (
-//           <>
-//             <button
-//               onClick={handleLogout}
-//               className="px-4 py-2 bg-red-500 text-white rounded"
-//             >
-//               Logout
-//             </button>
-//           </>
-//         ) : (
-//           <>
-//             <Link className="px-4 py-2 bg-blue-500 text-white rounded" to="/login">
-//               Login
-//             </Link>
-
-//             <Link className="px-4 py-2 bg-green-500 text-white rounded" to="/signup">
-//               Signup
-//             </Link>
-//           </>
-//         )}
-//       </div>
-//     </nav>
-//   );
-// };
-
-// export default Navbar;

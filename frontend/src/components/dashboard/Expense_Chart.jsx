@@ -173,75 +173,6 @@ const Expense_Chart = ({ expenses, selectedMonth , setSelectedMonth }) => {
 
   return (
 
-
-    // <div className="w-full lg:w-1/2 bg-white p-4 shadow-xl rounded-xl">
-      
-    //   <h2 className="font-bold text-lg mb-2 text-center sm:text-left">
-    //     Category-wise Expense
-    //   </h2>
-
-    //   <div className="mb-4 flex justify-center sm:justify-start">
-    //     <select
-    //       value={selectedMonth}
-    //       onChange={(e) => setSelectedMonth(Number(e.target.value))}
-    //       className="border p-2 rounded-lg w-full sm:w-auto"
-    //     >
-    //       {MonthName.map((month, index) => (
-    //         <option key={index} value={index}>{month}</option>
-    //       ))}
-    //     </select>
-    //   </div>
-
-    //   <h2 className="text-center sm:text-left mb-2">
-    //     Expense Month: <span className="font-semibold">{Month}</span>
-    //   </h2>
-
-      
-    //   <div className="w-full h-[300px] sm:h-[350px]">
-    //     <ResponsiveContainer width="100%" height="100%">
-    //       <PieChart>
-    //         <Pie
-    //           dataKey="value"
-    //           isAnimationActive={true}
-    //           data={data}
-    //           cx="50%"
-    //           cy="50%"
-    //           outerRadius="80%"
-    //           label
-    //         >
-    //           {data.map((entry, index) => (
-    //             <Cell
-    //               key={`cell-${index}`}
-    //               fill={COLORS[index % COLORS.length]}
-    //             />
-    //           ))}
-    //         </Pie>
-
-    //         <Tooltip />
-    //         <Legend />
-    //       </PieChart>
-    //     </ResponsiveContainer>
-    //   </div>
-
-    //   <div className="mt-4 text-center sm:text-left text-sm sm:text-base">
-    //     <p>
-    //       Debit Amount this Month : 
-    //       <span className="text-blue-500 font-semibold ml-1">
-    //         {totalExpense}
-    //       </span>
-    //     </p>
-    //     <p>
-    //       Credit Amount this Month : 
-    //       <span className="text-blue-500 font-semibold ml-1">
-    //         {receivedAmount}
-    //       </span>
-    //     </p>
-    //   </div>
-    // </div>
-
-  
-
-
   <div className="w-full bg-white p-4 sm:p-6 shadow-xl rounded-xl">
   
   {/* Header */}
@@ -290,10 +221,10 @@ const Expense_Chart = ({ expenses, selectedMonth , setSelectedMonth }) => {
   {/* Totals */}
   <div className="mt-4 text-sm flex flex-col sm:flex-row sm:justify-between gap-2">
     <p>
-      Debit: <span className="text-red-500 font-semibold">₹{totalExpense}</span>
+      Debit: <span className="text-red-500 font-semibold"><i class="fa-solid fa-indian-rupee-sign"></i>{totalExpense}</span>
     </p>
     <p>
-      Credit: <span className="text-green-500 font-semibold">₹{receivedAmount}</span>
+      Credit: <span className="text-green-500 font-semibold"><i class="fa-solid fa-indian-rupee-sign"></i>{receivedAmount}</span>
     </p>
   </div>
 </div>

@@ -72,13 +72,7 @@ const Signup = () => {
     Sign in
   </Link>
 </a>
-<p className="text-center text-gray-500 mt-2">
-  or you can sign in with
-</p>
-<div className='flex justify-center text-gray-600 text-2xl space-x-4 mt-2'>
-    <i class="fa-brands fa-google"></i><i class="fa-brands fa-facebook"></i>
-<i class="fa-brands fa-github"></i>
-</div>
+
   </form>
     </div>
     </>
