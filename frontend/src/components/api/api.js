@@ -1,26 +1,8 @@
-/*
-it is correct per infinite loop hatane ke liye paste kar rahe 
-*/ 
-
-// import axios from "axios";
-
-// export const api = axios.create({
-//   baseURL: "http://localhost:3000/api/v1",
-//   withCredentials: true,
-// });
-// export const checkLoginStatus=async()=>{
-//   try{
-//   const res = await api.get("/users/check-auth");
-//   return res.data;
-//   }catch(error){
-//  return null;
-//   }
-// }
 
 import axios from "axios";
 import toast from "react-hot-toast";
 export const api = axios.create({
-  baseURL: "http://localhost:3000/api/v1",
+  baseURL: "https://hisabmitra.onrender.com/api/v1",
   withCredentials: true,
 });
 

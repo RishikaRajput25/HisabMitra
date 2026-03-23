@@ -1,11 +1,11 @@
-import { useState } from 'react'
+
 import './App.css';
 import { createBrowserRouter,RouterProvider } from 'react-router-dom';
 import Home from './components/Home/Home';
 import Dashboard from './components/dashboard/Dashboard';
 import Profile from './components/profile/Profile';
 import Navbar from './components/common/Navbar';
-import Footer from './components/common/footer';
+import Footer from './components/common/Footer';
 import Signup from './components/profile/Signup';
 import Login from './components/profile/Login';
 import {Toaster} from "react-hot-toast";
