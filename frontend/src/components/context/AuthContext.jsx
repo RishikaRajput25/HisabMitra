@@ -7,25 +7,6 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // const fetchUser = async () => {
-  //   try {
-  //     const res = await checkLoginStatus();
-  //     if (res?.data?.user) {
-  //       setUser(res.data.user);   // backend se aata user object
-  //     } else {
-  //       setUser(null);
-  //     }
-  //   } catch (err) {
-  //     setUser(null);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-
-  // const handleLogout = async () => {
-  //   await logoutUser();
-  //   setUser(null); // Frontend se user hata diya
-  // };
 
   const fetchUser = async () => {
   const res = await checkLoginStatus();

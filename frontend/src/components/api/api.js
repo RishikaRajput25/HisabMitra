@@ -8,8 +8,7 @@ export const api = axios.create({
 
 export const checkLoginStatus = async () => {
   try {
-    const res = await api.get("/users/check-auth");
-     
+    const res = await api.get("/users/check-auth");  
     return res.data;
   } catch (error) {
     return null;

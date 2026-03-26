@@ -242,7 +242,7 @@ const logoutUser = asyncHandler(async(req,res)=>{
   
   const options = {
     httpOnly: true,
-    secure: false, // localhost = false, production = true
+    secure: true, // localhost = false, production = true
     sameSite: "lax",
   };
   return res
